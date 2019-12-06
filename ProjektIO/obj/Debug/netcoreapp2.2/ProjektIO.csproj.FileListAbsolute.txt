@@ -1,0 +1,11 @@
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\bin\Debug\netcoreapp2.2\ProjektIO.deps.json
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\bin\Debug\netcoreapp2.2\ProjektIO.runtimeconfig.json
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\bin\Debug\netcoreapp2.2\ProjektIO.runtimeconfig.dev.json
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\bin\Debug\netcoreapp2.2\ProjektIO.dll
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\bin\Debug\netcoreapp2.2\ProjektIO.pdb
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\obj\Debug\netcoreapp2.2\ProjektIO.csprojAssemblyReference.cache
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\obj\Debug\netcoreapp2.2\ProjektIO.csproj.CoreCompileInputs.cache
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\obj\Debug\netcoreapp2.2\ProjektIO.AssemblyInfoInputs.cache
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\obj\Debug\netcoreapp2.2\ProjektIO.AssemblyInfo.cs
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\obj\Debug\netcoreapp2.2\ProjektIO.dll
+D:\adm\Documents\STUDIA\V Semestr\Inteligencja Obliczeniowa\ProjektIO\ProjektIO\obj\Debug\netcoreapp2.2\ProjektIO.pdb
