@@ -106,9 +106,9 @@ namespace ProjektIO
             //Koniec danych ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
             //Wyzarzanie(data,suma,czas);
-            Wspinaczka(data, suma, czas);
+            //Wspinaczka(data, suma, czas);
             //TABU SEARCH
-            /*
+
             Tabu t = new Tabu();
             int iterator=0;
             int[,] next = new int[200, 5];
@@ -116,8 +116,51 @@ namespace ProjektIO
             Queue<Tabu> lista=new Queue<Tabu>();
             int current = suma;
             List<Tabu> top = new List<Tabu>();
+
+            //Randomowe rozwiązanie
+            int zamiana = 0;
+            List<int> mieszalnik = new List<int>();
+            List<int> listaa = new List<int>();
+            for (int i = 0; i < 200; i++)
+                listaa.Add(i);
+            for (int i = 0; i < 200; i++)
+            {
+                zamiana = rnd.Next(0, listaa.Count);
+                mieszalnik.Add(listaa[zamiana]);
+                listaa.RemoveAt(zamiana);
+            }
+            for (int i = 0; i < 200; i++)
+            {
+
+                for (j = 0; j < 3; j++)
+                {
+                    next[mieszalnik[i], j] = data[i, j];
+                }
+
+            }
+
+            suma = 0;
+            czas = 0;
+            for (int i = 0; i < 200; i++)
+            {
+                for (j = 0; j < 3; j++)
+                {
+                    data[i, j] = next[i, j];
+                }
+                czas += data[i, 1];
+                data[i, 3] = czas;
+                data[i, 4] = (data[i, 2] - data[i, 3]) * (data[i, 2] - data[i, 3]);
+                suma += data[i, 4];
+            }
+            current = suma;
+
+
+
+
+
+
             for (int h=0;h<100;h++)
-            { 
+            { //Usuwanie przedawnionych zamian z listy Tabu
                 if (h>0)
                 {
                     Tabu pomoc = lista.Peek();
@@ -130,6 +173,7 @@ namespace ProjektIO
                 }
                 for(int x=0;x<200;x++)
                 {
+                    //Analiza poszczególnych przypadków
                     for(int y=x+1;y<200;y++)
                     {
                         //przypisywanie wartości z pierwotnej tablicy do nowej tablicy
@@ -154,7 +198,7 @@ namespace ProjektIO
                             next[i, 4] = (next[i, 2] - next[i, 3]) * (next[i, 2] - next[i, 3]);
                             suma += next[i, 4];
                         }
-                        
+                        //Tworzenie listy top 5 najlepszych rozwiązań
                         if (iterator < 5)
                         {
                             t = new Tabu(x, y, suma);
@@ -165,7 +209,7 @@ namespace ProjektIO
                         {
                             if(Findmax(top)>suma)
                                 top[Findmax(top)]=new Tabu(x,y,suma);
-                            //Tworzenie listy top 5 najlepszych rozwiązanń
+                            
 
                         }
                     }
@@ -181,19 +225,18 @@ namespace ProjektIO
                 Tabu result = new Tabu();
                 if(lista.Count > 0)
                 {
-
-                    //Tu jest źle
                     for (int i=0; outcome==false|| i<5;i++)
                     {
-                        Console.WriteLine("Działa");
+                        //Console.WriteLine("Działa");
                         t.A = top[i].A;
                         t.B = top[i].B;
                         iterator = 0;
                         //Console.WriteLine(t.A + " " + t.B + " " + iterator);
-                        for (j=1;j<=3 || outcome==false;j++)
+                        for (j=1;j<=3;j++)
                         {
                             t.Licznik = j;
-                            if(lista.Contains(t)==false)
+                            //Console.WriteLine(t.A + " " + t.B + " " + t.Licznik);
+                            if (lista.Contains(t)==false)
                             {
                                 iterator++;
                             }
@@ -249,11 +292,11 @@ namespace ProjektIO
 
             }
 
-            Console.WriteLine("     " + suma);
+            Console.WriteLine(suma);
 
+            Zapis(data,suma);
 
-
-    */
+    //*/
 
 
             Console.ReadKey();
