@@ -28,6 +28,17 @@ namespace ProjektIO
             this.licznik = licznik;
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(a.ToString());
+            sb.Append(b.ToString());
+            sb.Append(licznik.ToString());
+
+            return sb.ToString();
+        }
+
 
     }
 
@@ -35,10 +46,11 @@ namespace ProjektIO
     class Program
     {
 
+
         static void Main(string[] args)
         {
             //Zczytywanie danych +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            string text = System.IO.File.ReadAllText("D:\\adm\\Documents\\STUDIA\\V Semestr\\Inteligencja Obliczeniowa\\ProjektIO\\ProjektIO\\Dane.csv");
+            string text = System.IO.File.ReadAllText("Dane.csv");
 
             Console.WriteLine(text);
 
@@ -93,10 +105,10 @@ namespace ProjektIO
             }
             //Koniec danych ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-            //Wyzarzanie();
-            //Wspinaczka();
+            //Wyzarzanie(data,suma,czas);
+            Wspinaczka(data, suma, czas);
             //TABU SEARCH
-            
+            /*
             Tabu t = new Tabu();
             int iterator=0;
             int[,] next = new int[200, 5];
@@ -142,32 +154,42 @@ namespace ProjektIO
                             next[i, 4] = (next[i, 2] - next[i, 3]) * (next[i, 2] - next[i, 3]);
                             suma += next[i, 4];
                         }
+                        
                         if (iterator < 5)
                         {
                             t = new Tabu(x, y, suma);
-                            top.Add(t);
+                            top.Add(t); 
+                            iterator++;
                         }
                         else
                         {
-                            top[Findmax(top)]=new Tabu(x,y,suma);
+                            if(Findmax(top)>suma)
+                                top[Findmax(top)]=new Tabu(x,y,suma);
                             //Tworzenie listy top 5 najlepszych rozwiązanń
+
                         }
                     }
                 }
 
+
+
+
+                
                 //Wybór rozwiązania
                 bool outcome=false;
                 iterator = 0;
                 Tabu result = new Tabu();
                 if(lista.Count > 0)
                 {
+
                     //Tu jest źle
                     for (int i=0; outcome==false|| i<5;i++)
                     {
-                        //Console.WriteLine("dziala");
+                        Console.WriteLine("Działa");
                         t.A = top[i].A;
                         t.B = top[i].B;
                         iterator = 0;
+                        //Console.WriteLine(t.A + " " + t.B + " " + iterator);
                         for (j=1;j<=3 || outcome==false;j++)
                         {
                             t.Licznik = j;
@@ -179,7 +201,7 @@ namespace ProjektIO
                         if(iterator==3)
                         {
                             result = t;
-                            result.Licznik = 3;
+                            result.Licznik = 4;
                             lista.Enqueue(result);
                             outcome = true;
                         }
@@ -188,8 +210,9 @@ namespace ProjektIO
                 }
                 else
                 {
-                    result = t;
-                    result.Licznik = 3;
+                    result.A = top[0].A;
+                    result.B = top[0].B;
+                    result.Licznik = 4;
                     lista.Enqueue(result);
                     outcome = true;
 
@@ -201,16 +224,18 @@ namespace ProjektIO
                 {
                     next[t.A, j] = data[t.B, j];
                     next[t.B, j] = data[t.A, j];
+                    data[t.A, j] = next[t.A, j];
+                    data[t.B, j] = next[t.B, j];
                 }
                 //Liczenie nowej wartości sumy odchyleń
                 suma = 0;
                 czas = 0;
                 for (int i = 0; i < 200; i++)
                 {
-                    czas += next[i, 1];
-                    next[i, 3] = czas;
-                    next[i, 4] = (next[i, 2] - next[i, 3]) * (next[i, 2] - next[i, 3]);
-                    suma += next[i, 4];
+                    czas += data[i, 1];
+                    data[i, 3] = czas;
+                    data[i, 4] = (data[i, 2] - data[i, 3]) * (data[i, 2] - data[i, 3]);
+                    suma += data[i, 4];
                 }
                 Console.WriteLine("     " + suma);
                 foreach(Tabu tb in lista)
@@ -219,18 +244,17 @@ namespace ProjektIO
                 }
 
 
-
+    
 
 
             }
-            
 
-            
-
+            Console.WriteLine("     " + suma);
 
 
 
-            
+    */
+
 
             Console.ReadKey();
         }     
@@ -252,64 +276,9 @@ namespace ProjektIO
         }
 
 
-        static void Wspinaczka()
+        static void Wspinaczka(int[,] data, int suma, int czas)
         {
-            //Zczytywanie danych +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            string text = System.IO.File.ReadAllText("D:\\adm\\Documents\\STUDIA\\V Semestr\\Inteligencja Obliczeniowa\\ProjektIO\\ProjektIO\\Dane.csv");
-
-            Console.WriteLine(text);
-
-            //Console.WriteLine(text[31]);
-
-            String[,] Tablica = new String[202, 3];
-
-            for (int i = 0; i < 200; i++)
-            {
-                for (int e = 0; e < 3; e++)
-                    Tablica[i, e] = "";
-            }
-
             int j = 0;
-            int k = 0;
-            for (int i = 31; i < text.Length; i++)
-            {
-                if (text[i] == '\n')
-                {
-                    k++;
-                    j = 0;
-                }
-                if (text[i] == ',')
-                {
-                    j++;
-
-                }
-                else
-                {
-                    Tablica[k, j] += text[i];
-                }
-            }
-
-
-            int suma = 0;
-            Console.WriteLine('\n');
-            int[,] data = new int[200, 5];
-            int czas = 0;
-            for (int i = 0; i < 200; i++)
-            {
-                for (int e = 0; e < 3; e++)
-                {
-                    data[i, e] = Int32.Parse(Tablica[i, e]);
-
-                    Console.WriteLine(data[i, e]);
-                }
-
-                czas += data[i, 1];
-                data[i, 3] = czas;
-                data[i, 4] = (data[i, 2] - data[i, 3]) * (data[i, 2] - data[i, 3]);
-                suma += data[i, 4];
-            }
-            //Koniec danych ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
             int current = suma;
             int[] newset = Losowanie();
             int[,] next = new int[200, 5];
@@ -353,7 +322,7 @@ namespace ProjektIO
             current = suma;
 
             //while (min>current)
-            int size = 2000000;
+            int size = 10000;
             for (int h = 0; h < size; h++)
             {
 
@@ -401,6 +370,7 @@ namespace ProjektIO
 
             }
             Console.WriteLine(current);
+            Zapis(data,current);
         }
 
         static int[] Losowanie()
@@ -420,67 +390,12 @@ namespace ProjektIO
             }
 
             return newset;
-        }
+        }//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-        static void Wyzarzanie()
+        static void Wyzarzanie(int[,] data, int suma,int czas)
         {
-            //Zczytywanie danych +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-            string text = System.IO.File.ReadAllText("D:\\adm\\Documents\\STUDIA\\V Semestr\\Inteligencja Obliczeniowa\\ProjektIO\\ProjektIO\\Dane.csv");
-
-            Console.WriteLine(text);
-
-            //Console.WriteLine(text[31]);
-
-            String[,] Tablica = new String[202, 3];
-
-            for (int i = 0; i < 200; i++)
-            {
-                for (int e = 0; e < 3; e++)
-                    Tablica[i, e] = "";
-            }
-
             int j = 0;
-            int k = 0;
-            for (int i = 31; i < text.Length; i++)
-            {
-                if (text[i] == '\n')
-                {
-                    k++;
-                    j = 0;
-                }
-                if (text[i] == ',')
-                {
-                    j++;
-
-                }
-                else
-                {
-                    Tablica[k, j] += text[i];
-                }
-            }
-
-
-            long suma = 0;
-            Console.WriteLine('\n');
-            int[,] data = new int[200, 5];
-            int czas = 0;
-            for (int i = 0; i < 200; i++)
-            {
-                for (int e = 0; e < 3; e++)
-                {
-                    data[i, e] = Int32.Parse(Tablica[i, e]);
-
-                    Console.WriteLine(data[i, e]);
-                }
-
-                czas += data[i, 1];
-                data[i, 3] = czas;
-                data[i, 4] = (data[i, 2] - data[i, 3]) * (data[i, 2] - data[i, 3]);
-                suma += data[i, 4];
-            }
-            //Koniec danych ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
             Console.WriteLine(suma);
 
             ///<summary>
@@ -492,10 +407,10 @@ namespace ProjektIO
             j = 0;
             double proba = 0.0;
             double alpha = 0.999;
-            double temp = 100000000.0; //Tu można się pobawić
+            double temp = 10000000000.0; //Tu można się pobawić
             double ep = 0.000001; //z wartościami
-            long delta;
-            long current = suma;
+            int delta;
+            int current = suma;
 
             StringBuilder sb = new StringBuilder();
 
@@ -526,8 +441,6 @@ namespace ProjektIO
             czas = 0;
             for (int i = 0; i < 200; i++)
             {
-                sb.Append("\n");
-                sb.Append(next[i, 0]);
                 for (j = 0; j < 3; j++)
                 {
                     data[i, j] = next[i, j];
@@ -538,8 +451,7 @@ namespace ProjektIO
                 suma += data[i, 4];
             }
             current = suma;
-            File.WriteAllText("D:\\adm\\Documents\\STUDIA\\V Semestr\\Inteligencja Obliczeniowa\\ProjektIO\\ProjektIO\\RandomOutput", sb.ToString());
-            //ZAPIS DO TXT
+            
 
             //int[] pomoc = new int[5];
             while (temp > ep)
@@ -597,7 +509,7 @@ namespace ProjektIO
                         for (int i = 0; i < 200; i++)
                         {
                             for (int e = 0; e < 5; e++)
-                                data[i, j] = next[i, j];
+                                data[i, e] = next[i, e];
                         }
                         current = delta + current;
                     }
@@ -613,7 +525,52 @@ namespace ProjektIO
 
             }
             Console.WriteLine(current);
+            Zapis(data,current);
+            
+
+
         }
+        static void Zapis(int[,] data,int suma)
+        {
+            string odp;
+            Console.WriteLine("Czy chcesz zapisać to ustawienie? Wybierz numer opcji:");
+            Console.WriteLine("1. TAK");
+            Console.WriteLine("2. NIE");
+            odp = Console.ReadLine();
+            switch (odp)
+            {
+                case "1":
+                    {
+                        Console.WriteLine("Podaj nazwę pliku:");
+                        string nazwa = Console.ReadLine();
+                        nazwa += suma.ToString();
+                        nazwa += ".csv";
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("Zadanie,Czas wykonania,Termin,Czas Zakonczenia, Odchylenie\n");
+                        for (int i = 0; i < 200; i++)
+                        {
+                            for (int j = 0; j < 5; j++)
+                            {
+                                sb.Append(data[i, j]);
+                                sb.Append(",");
+                            }
+                            sb.Append("\n");
+                        }
+                        File.WriteAllText(nazwa, sb.ToString());
+                        System.IO.File.WriteAllText(nazwa, sb.ToString());
+
+
+                        Console.WriteLine("Plik został zapisany, potwierdź zakończenie programu");
+                        break;
+                    }
+                case "2":
+                    {
+                        Console.WriteLine("Potwierdź zakończenie programu");
+                        break;
+                    }
+            }
+        }
+
     }
 }
 
