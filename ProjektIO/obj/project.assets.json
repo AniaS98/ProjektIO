@@ -686,27 +686,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\adm\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\Tala\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\adm\\Documents\\STUDIA\\V Semestr\\Inteligencja Obliczeniowa\\ProjektIO\\ProjektIO\\ProjektIO.csproj",
+      "projectUniqueName": "C:\\Users\\Tala\\Source\\Repos\\AniaS98\\ProjektIO\\ProjektIO\\ProjektIO.csproj",
       "projectName": "ProjektIO",
-      "projectPath": "D:\\adm\\Documents\\STUDIA\\V Semestr\\Inteligencja Obliczeniowa\\ProjektIO\\ProjektIO\\ProjektIO.csproj",
-      "packagesPath": "C:\\Users\\adm\\.nuget\\packages\\",
-      "outputPath": "D:\\adm\\Documents\\STUDIA\\V Semestr\\Inteligencja Obliczeniowa\\ProjektIO\\ProjektIO\\obj\\",
+      "projectPath": "C:\\Users\\Tala\\Source\\Repos\\AniaS98\\ProjektIO\\ProjektIO\\ProjektIO.csproj",
+      "packagesPath": "C:\\Users\\Tala\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tala\\Source\\Repos\\AniaS98\\ProjektIO\\ProjektIO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\adm\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Tala\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"

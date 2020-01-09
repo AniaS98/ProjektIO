@@ -169,7 +169,7 @@ namespace ProjektIO
             }
             current = suma;
             //Część główna
-            for (int h = 0; h <= 2; h++)//Zwiększenie wartości h polepszy końcowy wynik
+            for (int h = 0; h <= 2000; h++)//Zwiększenie wartości h polepszy końcowy wynik
             { //Usuwanie przedawnionych zamian z listy Tabu (od drugiej iteracji)
                 top = new List<Tabu>();
                 bool outcome = false;
@@ -186,6 +186,7 @@ namespace ProjektIO
                 }
                 for (int x = 0; x < 200; x++)//Analiza poszczególnych przypadków
                 {
+                    iterator = 0;
                     for (int y = x + 1; y < 200; y++)
                     {
                         //przypisywanie wartości z pierwotnej tablicy do nowej tablicy
@@ -220,8 +221,9 @@ namespace ProjektIO
                         }
                         else
                         {
-                            if (Findmax(top) > suma)//Jeżeli obecna suma jest mniejsza od najgorszego rozwiązania z listy top to w miejsce najgorzego wyniku wpisywana jest obecna suma
+                            if (top[Findmax(top)].Licznik > suma)//Jeżeli obecna suma jest mniejsza od najgorszego rozwiązania z listy top to w miejsce najgorzego wyniku wpisywana jest obecna suma
                                 top[Findmax(top)] = new Tabu(x, y, suma);
+                                iterator++;
                         }
                     }
                 }
@@ -262,10 +264,10 @@ namespace ProjektIO
                 //Zamiana indeksów w nowej tablicy na wartości z najlepszego wyniku
                 for (j = 0; j < 3; j++)
                 {
-                    next[t.A, j] = data[t.B, j];
-                    next[t.B, j] = data[t.A, j];
-                    data[t.A, j] = next[t.A, j];
-                    data[t.B, j] = next[t.B, j];
+                    next[result.A, j] = data[result.B, j];
+                    next[result.B, j] = data[result.A, j];
+                    data[result.A, j] = next[result.A, j];
+                    data[result.B, j] = next[result.B, j];
                 }
                 //Liczenie nowej wartości sumy odchyleń
                 suma = 0;
@@ -313,7 +315,7 @@ namespace ProjektIO
             }
             current = suma;
             //while (min>current)
-            for (int h = 0; h <= 10; h++)//Zwiększenie wartości h polepszy końcowy wynik
+            for (int h = 0; h <= 10000; h++)
             {
                 for (int i = 0; i < 200; i++)//przypisywanie wartości z pierwotnej tablicy do nowej tablicy
                 {
