@@ -35,7 +35,7 @@ namespace ProjektIO
         }
     }
 
-   
+
     class Program
     {
         static int[,] Losowanie(int[,] data, int[,] next)//Losowanie rozwiązania początkowego
@@ -133,18 +133,20 @@ namespace ProjektIO
         {
             int iter = 0;
             int max = tab[0].Licznik;
-            for (int i=1;i<5;i++)
+            for (int i = 1; i < 5; i++)
             {
                 if (max < tab[i].Licznik)
                 {
                     max = tab[i].Licznik;
                     iter = i;
-                }     
+                }
             }
             return iter;
         }
         static void TabuSearch(int[,] data, int suma, int czas)
         {
+            string odpowiedz;
+            int wielkosc = 0;
             int j = 0;
             Tabu t = new Tabu();
             int iterator = 0;
@@ -153,9 +155,13 @@ namespace ProjektIO
             Queue<Tabu> lista = new Queue<Tabu>();
             int current = suma;
             List<Tabu> top = new List<Tabu>();
-            next=Losowanie(data, next);//Losowanie rozwiązania początkowego
+            next = Losowanie(data, next);//Losowanie rozwiązania początkowego
             suma = 0;
             czas = 0;
+            Console.WriteLine("Podaj wielkość liczby Tabu (całkowita, mniejsza od 66)");
+            odpowiedz = Console.ReadLine();
+            Int32.TryParse(odpowiedz, out wielkosc);
+            Console.WriteLine(wielkosc);
             for (int i = 0; i < 200; i++)//Obliczanie początkowej sumy odchyleń dla rozwiązania początkowego
             {
                 for (j = 0; j < 3; j++)
@@ -169,7 +175,7 @@ namespace ProjektIO
             }
             current = suma;
             //Część główna
-            for (int h = 0; h <= 2000; h++)//Zwiększenie wartości h polepszy końcowy wynik
+            for (int h = 0; h <= 5; h++)//Zwiększenie wartości h polepszy końcowy wynik
             { //Usuwanie przedawnionych zamian z listy Tabu (od drugiej iteracji)
                 top = new List<Tabu>();
                 bool outcome = false;
@@ -223,7 +229,7 @@ namespace ProjektIO
                         {
                             if (top[Findmax(top)].Licznik > suma)//Jeżeli obecna suma jest mniejsza od najgorszego rozwiązania z listy top to w miejsce najgorzego wyniku wpisywana jest obecna suma
                                 top[Findmax(top)] = new Tabu(x, y, suma);
-                                iterator++;
+                            iterator++;
                         }
                     }
                 }
@@ -246,7 +252,7 @@ namespace ProjektIO
                         if (iterator == 3)
                         {//Zapisanie najlepszego dozwolonego wyniku na listę Tabu
                             result = t;
-                            result.Licznik = 4;
+                            result.Licznik = wielkosc;
                             lista.Enqueue(result);
                             outcome = true;
                         }
@@ -257,7 +263,7 @@ namespace ProjektIO
                 {//Zapisanie najlepszego wyniku na listę Tabu
                     result.A = top[0].A;
                     result.B = top[0].B;
-                    result.Licznik = 4;
+                    result.Licznik = wielkosc;
                     lista.Enqueue(result);
                     outcome = true;
                 }
@@ -289,7 +295,7 @@ namespace ProjektIO
             Zapis(data, suma);
         }
 
-        
+
 
         static void Wspinaczka(int[,] data, int suma, int czas)
         {
@@ -356,10 +362,10 @@ namespace ProjektIO
                 }
             }
             Console.WriteLine("Wynik końcowy: " + current);
-            Zapis(data,current);
+            Zapis(data, current);
         }
 
-        static void Wyzarzanie(int[,] data, int suma,int czas)
+        static void Wyzarzanie(int[,] data, int suma, int czas)
         {
             Console.WriteLine(suma);
             int j = 0;
@@ -374,7 +380,7 @@ namespace ProjektIO
             Random rnd = new Random();
             next = Losowanie(data, next);//Losowanie rozwiązania początkowego
             current = suma;
-            
+
             suma = 0;
             czas = 0;
             for (int i = 0; i < 200; i++)//Obliczanie początkowej sumy odchyleń dla rozwiązania początkowego
@@ -391,7 +397,7 @@ namespace ProjektIO
             current = suma;
             while (temp > ep)//Dopóki temperatura jest większa od episilon, będą wykonywane kolejne iteracje polepszania wyniku
             {
-                Random rnd2 = new Random();  
+                Random rnd2 = new Random();
                 for (int i = 0; i < 200; i++)//przypisywanie wartości z pierwotnej tablicy do nowej tablicy
                 {
                     for (j = 0; j < 3; j++)
@@ -440,14 +446,14 @@ namespace ProjektIO
                         }
                         current = delta + current;
                     }
-                } 
+                }
                 temp *= alpha;//Następuje zmiana temperatury
             }
             Console.WriteLine("Wynik końcowy: " + current);
-            Zapis(data,current);
+            Zapis(data, current);
         }
         //Funkcja pozwalająca na zapis obecnego ustawienia zadań
-        static void Zapis(int[,] data,int suma)
+        static void Zapis(int[,] data, int suma)
         {
             string odp;
             Console.WriteLine("Czy chcesz zapisać to ustawienie? Wybierz numer opcji:");
