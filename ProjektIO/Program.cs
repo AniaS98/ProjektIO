@@ -315,7 +315,7 @@ namespace ProjektIO
             }
             current = suma;
             //while (min>current)
-            for (int h = 0; h <= 10000; h++)
+            for (int h = 0; h <= 1000; h++)
             {
                 for (int i = 0; i < 200; i++)//przypisywanie wartości z pierwotnej tablicy do nowej tablicy
                 {
